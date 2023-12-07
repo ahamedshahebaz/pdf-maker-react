@@ -32,7 +32,7 @@ const Header = (props) => {
     formData.append('text', text);
 
     try {
-      const response = await fetch(process.env.endpoint + "/convert" || 'http://localhost:3000/convert', {
+      const response = await fetch(process.env.REACT_APP_API_URL + "/convert" || 'http://localhost:3000/convert', {
         method: 'POST',
         body: formData,
       });
