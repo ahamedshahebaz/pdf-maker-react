@@ -86,7 +86,7 @@ const Header = (props) => {
         // handleUpload(file);
       } else {
         // File is not a Word document, generate alert
-        alert('Please select a Word document (.doc or .docx).');
+        alert('Please select a Word document (.docx).');
         // Optionally, clear the file input
         setConverting(false);
 
