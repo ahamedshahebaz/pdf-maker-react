@@ -79,7 +79,7 @@ const Header = (props) => {
     const file = event.target.files[0];
     if (file) {
       // Check if the file type is a Word document
-      if (file.type === 'application/msword' || file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+      if (file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
         // File is a Word document
         setSelectedFile(file);
         setFileName(file.name);
