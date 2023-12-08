@@ -10,7 +10,9 @@ const About = (props) => {
   const [text, setText] = useState("");
   const fileInputRef = useRef();
   const [error, setError] = useState(false);
-  const [success, setSucess] = useState("")
+  const [success, setSucess] = useState("");
+  const [converting, setConverting] = useState(false);
+
   const handleFileClick = () => {
     // Trigger a click on the hidden file input
     fileInputRef.current.click();
@@ -35,11 +37,13 @@ const About = (props) => {
       // Check if the file type is a Word document
       if (file.type === 'application/pdf') {
         // File is a Word document
+        setConverting(true);
         setSelectedFile(file);
         setFileName(file.name);
         // handleUpload(file);
       } else {
         // File is not a Word document, generate alert
+        setConverting(false);
         alert('Please select a PDF (.pdf).');
         // Optionally, clear the file input
 
@@ -60,13 +64,14 @@ const About = (props) => {
     formData.append('text', text);
 
     try {
-      const response = await fetch(process.env.REACT_APP_API_URL +"/verify" || 'http://localhost:3000/verify', {
+      const response = await fetch(process.env.REACT_APP_API_URL + "/verify" || 'http://localhost:3000/verify', {
         method: 'POST',
         body: formData,
       });
 
       if (response.ok) {
         const data = await response.json();
+        setConverting(false);
         setSucess(data.isValid);
         setSelectedFile(null);
         setText("");
@@ -96,7 +101,7 @@ const About = (props) => {
             />
           </div> */}
           <div className="nine columns main-col">
-            <h2>Verify PDF</h2>
+            <h2>{converting ? "Verifying" : "Verify PDF"}</h2>
             <p>{success}</p>
             <div className="row">
               <div className="columns download">
