@@ -101,12 +101,12 @@ const About = (props) => {
             />
           </div> */}
           <div className="nine columns main-col">
-            <h2>{converting ? "Verifying" : "Verify PDF"}</h2>
+            <h2>Verify PDF</h2>
             <p>{success}</p>
             <div className="row">
               <div className="columns download">
                 <p onClick={openModal} className="button">
-                  <i className="fa fa-download"></i>Upload PDF
+                  <i className="fa fa-download"></i>{converting ? "Verifying" : "Verify PDF"}
                 </p>
                 <Modal isOpen={isModalOpen} onClose={closeModal}>
                   <div>
